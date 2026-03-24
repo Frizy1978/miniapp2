@@ -1,0 +1,29 @@
+{
+  "name": "fisholha-miniapp",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f postgres",
+    "db:up": "docker compose up -d postgres",
+    "dev:api": "npm --workspace @fisholha/api run start:dev",
+    "dev:web": "npm --workspace @fisholha/web run dev",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "prisma:generate": "npm --workspace @fisholha/api run prisma:generate",
+    "prisma:migrate:deploy": "npm --workspace @fisholha/api run prisma:migrate:deploy",
+    "prisma:migrate:dev": "npm --workspace @fisholha/api run prisma:migrate:dev",
+    "staging:build": "docker compose --env-file .env.staging -f docker-compose.staging.yml build",
+    "staging:down": "docker compose --env-file .env.staging -f docker-compose.staging.yml down",
+    "staging:logs": "docker compose --env-file .env.staging -f docker-compose.staging.yml logs -f",
+    "staging:up": "docker compose --env-file .env.staging -f docker-compose.staging.yml up -d --build"
+  }
+}
